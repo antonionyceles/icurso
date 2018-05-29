@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="theme-color" content="#{guestPreferences.themeColors[guestPreferences.theme]}" />
+        </f:facet>
+        <title>::: Relatório Alerta Criticos :::</title>   
+        <h:outputScript name="js/nanoscroller.js" library="ultima-layout" />
+        <h:outputScript name="js/layout.js" library="ultima-layout" />
+        <h:outputScript name="js/ripple.js" library="ultima-layout" />
+        <h:outputScript name="js/swipe.js" library="ultima-layout" />
+        <h:outputScript name="utils.js" library="js" />
+        <ui:insert name="head"/>
+        <script type="text/javascript">
+            function startDownload() {
+                PF('statusDialog').show();
+            }
+
+            function stopDownload() {
+                PF('statusDialog').hide();
+            }
+        </script>
+
+    </h:head>
+<!--    <f:metadata>
+        <f:event type="preRenderView"  listener="#{loginView.checkLogged()}" /> 
+    </f:metadata>-->
+    <h:body styleClass="main-body #{guestPreferences.compact ? 'layout-compact' : null}">
+        <!--        <f:metadata>
+                    <f:event type="preRenderView"   listener="#{applicationControllerView.checarFuncionalidadeAtual()}" /> 
+                </f:metadata>-->
+
+        <p:ajaxStatus  onstart="PF('statusDialog').show()"  onsuccess="PF('statusDialog').hide()"  style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+            <f:facet name="start">
+                <p:dialog widgetVar="statusDialog"  style="background-color: transparent;border:none;box-shadow: none; text-align: center" appendTo="@(body)"  modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                    <i class="fa fa-circle-o-notch fa-spin ajax-loader" aria-hidden="true"></i>
+                    <p>Aguarde...</p>
+                </p:dialog>
+
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+        </p:ajaxStatus>
+        <div class="layout-wrapper #{guestPreferences.menuLayout}">
+            <h:form>
+                <ui:include src="./topbar.xhtml" />
+            </h:form>
+            <ui:include src="./menu.xhtml" />
+
+            <div class="layout-main">
+                <h:form id="form">
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12">
+                            <div  class="card">
+
+                                <p:outputPanel id="content">
+                                    <p:growl id="messages" showDetail="true" autoUpdate="true"  sticky="true" showSummary="true"  globalOnly="true" />  
+                                    <ui:insert name="content"/>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ui:include src="./footer.xhtml" />
+                </h:form>
+            </div>
+        </div>
+
+
+
+        <h:outputStylesheet name="css/nanoscroller.css" library="ultima-layout" />
+        <h:outputStylesheet name="css/animate.css" library="ultima-layout" />
+        <h:outputStylesheet name="css/ripple.css" library="ultima-layout" />
+        <h:outputStylesheet name="css/style.css" library="hsr" />
+        <h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css" library="ultima-layout" />
+    </h:body>
+
+</html>

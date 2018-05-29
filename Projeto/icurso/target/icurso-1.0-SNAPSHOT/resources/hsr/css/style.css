@@ -1,0 +1,98 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/10/2016, 16:47:13
+    Author     : diego.amaral
+*/
+
+.layout-wrapper .topbar .topbar-right #profile-name {
+    font-size: 24px;
+    font-weight: normal;
+    padding: 2px 2px 1px 2px;
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: middle;
+    height: 36px;
+    margin-right: 10px;
+    position: relative;
+    left: -16px;
+    top: 12px;
+}
+body .ui-chkbox {
+    width: auto !important; 
+    height: auto !important;
+}
+
+
+.noPadding .ui-panelgrid .ui-panelgrid-cell
+{
+    margin: 0px !important; 
+    padding: 0px !important;
+}
+
+.floatRight {
+    float: right;
+ text-align : right;
+}
+
+body .ui-state-active, body .ui-state-highlight {
+    background-color: #8BC34A !important;
+    color: #ffffff;
+}
+body .ui-tabs .ui-tabs-nav > li.ui-state-active {
+    background-color: #ffffff !important;
+    border-color: #8BC34A;
+    border-style: solid !important;
+}
+.ui-chkbox.ui-chkbox-all.ui-widget {
+    display:none !important;
+ }
+ body .ui-state-active, body .ui-state-highlight {
+    background-color: #FFC107 !important;
+    color: #212121;
+}
+body .ui-datatable tbody tr.ui-datatable-even.ui-state-highlight {
+    background-color: #FFC107 !important;
+    color: #212121;
+}
+.alignRight{
+    text-align: right;
+}
+.ui-widget-content {
+    font-size: 11px  !important;
+}
+.ui-datatable.ui-datatable-scrollable thead tr th
+{
+        font-size: 8px  !important;
+        text-align: left  !important;
+}
+.inputAlignRight input{
+    text-align: right  !important;
+}
+.inputAlignRight label{
+    width: 100%;
+    text-align: right  !important;
+    padding-right: 10px !important;
+}
+.inputRed input{
+    color:red !important;
+}
+
+.inputGreen input{
+    color:green !important;
+}
+
+/*.ui-selectonemenu-panel{
+     width: 150px !important;
+}
+
+.ui-selectonemenu-item {
+    display: line !important;
+    word-wrap: normal !important;
+    white-space: pre-wrap !important;
+    width: auto !important;
+    width: 100% !important;
+}   */
