@@ -5,22 +5,57 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-                <!--xmlns:components="http://java.sun.com/jsf/composite/components"-->
+    <!--xmlns:components="http://java.sun.com/jsf/composite/components"-->
 
 
     <ui:define name="content">
-        
-          <h3><b>Cadastrar Curso</b></h3>
 
+        <h3><b>Cadastrar Curso</b></h3>
+        <p:panelGrid columns="1"   layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-grid-col-12">
 
+            <p:panelGrid columns="3"   layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-grid-col-6,ui-grid-col-3,ui-grid-col-3 ">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText title="Nome"  value="#{usuarioView.selectedUsuario.nmUsuario}"  requiredMessage="O campo de Nome não pode ficar vazio"  required="true"    maxlength="150">
+                        <p:focus></p:focus>
+                    </p:inputText>
+                    <label>Nome</label>
+                </h:panelGroup>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputMask title="CPF"  id="CPF" value="#{usuarioView.selectedUsuario.nrCpf}" mask="999.999.999-99" requiredMessage="O campo de CPF não pode ficar vazio"   required="true"  size="15" maxlength="11"/>
+                    <label>CPF</label>
+                </h:panelGroup>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:calendar title="Data de Nascimento" id="DataNascimento" requiredMessage="O campo de Data de Nascimento não pode ficar vazio"   pattern="dd/MM/yyyy" mask="true"  required="true"  value="#{usuarioView.selectedUsuario.dtNascimento}"   size="10" />
+                    <label>Data de Nascimento</label>
+                </h:panelGroup>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-grid-col-6">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText title="E-mail" id="Email" requiredMessage="O campo de E-mail não pode ficar vazio"  value="#{usuarioView.selectedUsuario.dsEmail}"  required="true"   size="100" maxlength="250"/>
+                    <label>E-mail</label>
+                </h:panelGroup>
+            </p:panelGrid>
+            <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText title="Login" id="Login" value="#{usuarioView.selectedUsuario.dsLogin}"  required="true"  requiredMessage="O campo de Login não pode ficar vazio"  size="30" maxlength="20"/>
+                    <label>Login</label>
+                </h:panelGroup>
+                               <h:panelGroup>
+                    <p:selectBooleanButton   value="#{usuarioView.ativoUsuario}" onLabel="Ativo" offLabel="Inativo"  >  
+                    </p:selectBooleanButton>
+                </h:panelGroup>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:password title="Senha" size="30" value="#{usuarioView.senha}" feedback="true" inline="true"
+                                promptLabel="Digite sua Senha" weakLabel="Senha Fraca"
+                                goodLabel="Senha Boa" strongLabel="Senha Forte"/>
+                    <label>Senha</label>
+                </h:panelGroup>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:password title="Confirmar Senha" size="30"  value="#{usuarioView.confirmaSenha}" />
+                    <label>Confirmação de Senha</label>
+                </h:panelGroup>
+            </p:panelGrid>
+
+        </p:panelGrid>
     </ui:define>
-
-
-
-
-
-
-
-
-
 </ui:composition>

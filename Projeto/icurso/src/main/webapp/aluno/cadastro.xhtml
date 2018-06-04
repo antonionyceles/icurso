@@ -1,0 +1,129 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <!--xmlns:components="http://java.sun.com/jsf/composite/components"-->
+
+
+    <ui:define name="content">
+
+        <h3><b>Cadastrar Aluno</b></h3>
+        <p:panelGrid columns="1"   layout="grid" styleClass="ui-panelgrid-blank form-group" >
+
+            <p:panelGrid columns="1"   layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-grid-col-8">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText title="Nome"  value="#{usuarioView.selectedUsuario.nmUsuario}"  requiredMessage="O campo de Nome não pode ficar vazio"  required="true"    maxlength="150">
+                        <p:focus></p:focus>
+                    </p:inputText>
+                    <label>Nome</label>
+                </h:panelGroup>
+            </p:panelGrid>
+            <p:panelGrid columns="2"   layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-grid-col-3,ui-grid-col-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputMask title="CPF"  id="CPF" value="#{usuarioView.selectedUsuario.nrCpf}" mask="999.999.999-99" requiredMessage="O campo de CPF não pode ficar vazio"   required="true"  size="15" maxlength="11"/>
+                    <label>CPF</label>
+                </h:panelGroup>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:calendar title="Data de Nascimento" id="DataNascimento" requiredMessage="O campo de Data de Nascimento não pode ficar vazio"   pattern="dd/MM/yyyy" mask="true"  required="true"  value="#{usuarioView.selectedUsuario.dtNascimento}"   size="10" />
+                    <label>Data de Nascimento</label>
+                </h:panelGroup>
+            </p:panelGrid>
+            <p:panelGrid columns="1"   layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-grid-col-8 ">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText title="Responsável"  value="#{usuarioView.selectedUsuario.nmUsuario}"  requiredMessage="O campo de Nome não pode ficar vazio"  required="true"    maxlength="150">
+                        <p:focus></p:focus>
+                    </p:inputText>
+                    <label>Responsável</label>
+                </h:panelGroup>
+            </p:panelGrid>
+            <p:panelGrid columns="1"   layout="grid" styleClass="ui-panelgrid-blank form-group" >
+
+
+                <p:tabView>
+                    <p:tab title="Endereço">
+                        <p:outputPanel id="pnlEndereco">
+                            <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-g-2,ui-g-7,ui-g-3">
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputMask title="CEP" value="#{pacienteCadastroView.pacienteSelecionado.nrCEP}"  mask="99999-999" maxlength="7">
+                                        <p:ajax process="@this" listener="#{pacienteCadastroView.onBlurCep}" event="blur" update="pnlEndereco" />
+                                    </p:inputMask>
+                                    <label>CEP</label>
+                                </h:panelGroup>
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText title="Logradouro"  value="#{pacienteCadastroView.pacienteSelecionado.dsEndereco}"  maxlength="100" />
+                                    <label>Logradouro</label>
+                                </h:panelGroup>
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText title="Nº"   value="#{pacienteCadastroView.pacienteSelecionado.nrEndereco}"  maxlength="8" />
+                                    <label>Nº</label>
+                                </h:panelGroup>
+                            </p:panelGrid>
+                            <p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-g-3,ui-g-2,ui-g-3,ui-g-4">
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText title="Complemento" value="#{pacienteCadastroView.pacienteSelecionado.dsComplemento}"  maxlength="30" />
+                                    <label>Complemento</label>
+                                </h:panelGroup>
+                                <h:panelGroup styleClass="md-inputfield">
+                                    <p:inputText title="Bairro" value="#{pacienteCadastroView.pacienteSelecionado.dsBairro}"  maxlength="100" />
+                                    <label>Bairro</label>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:selectOneMenu requiredMessage="O campo de estado é obrigatório. Selecione o estado desejado." value="#{pacienteCadastroView.ufSelecionado}">
+                                        <p:ajax process="@this" listener="#{pacienteCadastroView.onEstadoChange}" event="change" update="selectCidade" />
+                                        <f:selectItem itemLabel="Estado" itemValue="#{null}" />
+                                        <f:selectItems value="#{pacienteCadastroView.ufs}" var="estado" itemLabel="#{estado.nmUf}" itemValue="#{estado.id.cdUf}" />
+                                    </p:selectOneMenu>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:selectOneMenu required="true" requiredMessage="O campo de cidade é obrigatório. Selecione a cidade desejada." value="#{pacienteCadastroView.pacienteSelecionado.cdCidade}" id="selectCidade">
+                                        <f:selectItem itemLabel="Cidade" itemValue="#{null}" />
+                                        <f:selectItems value="#{pacienteCadastroView.cidades}" var="cidade" itemLabel="#{cidade.nmCidade}" itemValue="#{cidade.cdCidade}" />
+                                    </p:selectOneMenu>
+                                </h:panelGroup>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:tab>
+                </p:tabView>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-g-3,ui-g-3">
+
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputMask title="Celular" mask="(99)99999-9999"  value="#{pacienteCadastroView.pacienteSelecionado.nrCelular}"  maxlength="20" />
+                    <label>Celular</label>
+                </h:panelGroup>
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputMask title="Telefone Residencial" mask="(99)9999-9999"  value="#{pacienteCadastroView.pacienteSelecionado.nrTelefone}"  maxlength="10" />
+                    <label>Telefone</label>
+                </h:panelGroup>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-g-6">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText title="E-mail" value="#{pacienteCadastroView.pacienteSelecionado.dsEmail}" maxlength="200" />
+                    <label>E-mail</label>
+                </h:panelGroup>
+                </p:panelGrid>
+                <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" columnClasses="ui-g-3">
+                <h:panelGroup styleClass="md-inputfield">
+                    
+                    <h:form enctype="multipart/form-data">
+                        <p:growl id="messages" showDetail="true" />
+                        <p:fileUpload label="Escolher Arquivo" value="#{fileUploadView.file}" mode="simple" skinSimple="true" multiple="true" />
+
+                        <p:commandButton value="Anexar" ajax="false" actionListener="#{fileUploadView.upload}" />
+                    </h:form>
+
+                </h:panelGroup>
+
+
+            </p:panelGrid>
+
+
+
+        </p:panelGrid>
+
+    </ui:define>
+</ui:composition>

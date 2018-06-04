@@ -20,10 +20,18 @@
                         </div>
                     </ui:fragment>
 
-
                     <pu:menu widgetVar="me">
-                        <p:menuitem  value="Curso" icon="&#xE801;"  ajax="true"  process="@this"    outcome="/curso/cadastro.xhtml" />
-                       
+                        <p:menuitem  value="Dashboard" icon="&#xE871;"  ajax="true" process="@this"   />
+                        <p:submenu  label="Cursos" icon="&#xE896;" >
+                            <p:menuitem value="Consultar Cursos" icon="&#xE8B6;" ajax="true"  process="@this"   />                      
+                            <p:menuitem  value="Cadastrar Curso" icon="&#xE801;"  ajax="true"  process="@this"    outcome="/curso/cadastro.xhtml" />                       
+                        </p:submenu>
+                        <p:submenu  label="Alunos" icon="&#xE7FB;" >
+                            <p:menuitem value="Consultar Alunos" icon="&#xE8B6;" ajax="true"  process="@this"   />                      
+                            <p:menuitem  value="Cadastrar Alunos" icon="&#xE7F0;"  ajax="true"  process="@this"    />                       
+                        </p:submenu>
+                        <p:menuitem  value="Carteira de Clientes" icon="&#xE0BA;"  ajax="true"  process="@this"  />
+                        <p:menuitem  value="Matrícula" icon="&#xE065;"  ajax="true"  process="@this"    />
                     </pu:menu>
                 </div>
             </div>
